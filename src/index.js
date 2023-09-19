@@ -29,7 +29,6 @@ client.on('authenticated', (session) => {
 client.on('message', async (msg) => {
    const number = serialize(msg.from)
    const isOkay = checkNumber(number)
-   const message = msg.body
 
    if (!isOkay) return
 
