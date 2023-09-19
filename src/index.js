@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const { serialize } = require('./helpers/number-serialize.js')
 const { checkNumber } = require('./helpers/check-number.js')
+const { commands } = require('./controllers/commands.controller.js')
 
 const client = new Client({
    puppeteer: {
@@ -30,10 +31,9 @@ client.on('message', async (msg) => {
    const isOkay = checkNumber(number)
    const message = msg.body
 
-   if (isOkay) {
+   if (!isOkay) return
 
-   }
-
+   return await commands(msg)
 })
 
 client.on('disconnected', (reason) => {
