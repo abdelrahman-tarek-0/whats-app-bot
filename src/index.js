@@ -30,9 +30,12 @@ client.on('message', async (msg) => {
    const number = serialize(msg.from)
    const isOkay = checkNumber(number)
 
+
    if (!isOkay) return
 
-   return await commands(msg)
+   console.log(number,msg.body, msg.from)
+   
+   await commands(msg)
 })
 
 client.on('disconnected', (reason) => {
