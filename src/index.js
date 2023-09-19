@@ -1,6 +1,8 @@
 const { Client, LocalAuth } = require('whatsapp-web.js')
 const fs = require('fs')
 
+const { serialize } = require('./helpers/number-serialize.js')
+
 const client = new Client({
    puppeteer: {
       headless: true,
@@ -9,7 +11,6 @@ const client = new Client({
       clientId: 'client',
    }),
 })
-
 
 client.on('ready', () => {
    console.log('Client is ready!')
@@ -24,18 +25,9 @@ client.on('authenticated', (session) => {
 })
 
 client.on('message', async (msg) => {
-   console.log(msg.body)
-   console.log(msg.from)
+   const number = serialize(msg.from)
 
-   const number = '+20 106 036 6026'
-   const sanitized_number = number.toString().replace(/[- )(]/g, '') // remove unnecessary chars from the number
-   const final_number = `20${sanitized_number.substring(
-      sanitized_number.length - 10
-   )}` 
-
-   console.log(msg.author);
-
-
+   
 })
 
 client.on('disconnected', (reason) => {
