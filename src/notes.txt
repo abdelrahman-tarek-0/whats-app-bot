@@ -1,0 +1,17 @@
+// download audio from whatsapp
+if (msg.type == 'ptt') {
+    console.log("Voice Clip Received");
+
+    const media = await msg.downloadMedia().
+        then((data) => {
+
+            const binaryData = Buffer.from(data.data, 'base64');
+            fs.writeFile('audio.ogg', binaryData, function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("File saved");
+                }
+            })
+        });
+}
