@@ -2,6 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js')
 const fs = require('fs')
 
 const { serialize } = require('./helpers/number-serialize.js')
+const { checkNumber } = require('./helpers/check-number.js')
 
 const client = new Client({
    puppeteer: {
@@ -26,8 +27,13 @@ client.on('authenticated', (session) => {
 
 client.on('message', async (msg) => {
    const number = serialize(msg.from)
+   const isOkay = checkNumber(number)
+   const message = msg.body
 
-   
+   if (isOkay) {
+
+   }
+
 })
 
 client.on('disconnected', (reason) => {
