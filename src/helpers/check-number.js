@@ -3,9 +3,9 @@ const blackList = require('../black-list.json')
 
 
 exports.checkNumber = (number) => {
-    if (whiteList.includes(number)) {
+    if (blackList.includes(number)) {
         return true
-    } else if (blackList.includes(number)) {
+    } else if (whiteList.includes(number)) {
         return false
     } else {
         return null
